@@ -1,15 +1,16 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from 'firebase/storage'
+import { getStorage } from "firebase/storage";
+
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBQYEwdqPyU4zvNHVx3KfgGV3wM6pzf-Ps",
-    authDomain: "product-api-4bbac.firebaseapp.com",
-    projectId: "product-api-4bbac",
-    storageBucket: "product-api-4bbac.appspot.com",
-    messagingSenderId: "486105279188",
-    appId: "1:486105279188:web:ca7420f271f557e8976941"
+  apiKey: "AIzaSyDULHo4WgLPTzrW0dob44XBgM3tgYnSq28",
+  authDomain: "bq-express-api.firebaseapp.com",
+  projectId: "bq-express-api",
+  storageBucket: "bq-express-api.appspot.com",
+  messagingSenderId: "359484021249",
+  appId: "1:359484021249:web:ac30a1bf8d339ce17afe00"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-export const storage = getStorage(app)
+export const storage = getStorage(app);

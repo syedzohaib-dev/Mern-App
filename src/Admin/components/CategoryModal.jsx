@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { storage } from '../utils/FirebaseConfig'
+import { storage } from '../utils/FirebaseConfig';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import axios from 'axios';
+import { AppRoute } from '../../App';
 
 
-function CategoryModal() {
+function CategoryModal({recallData}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -18,27 +20,27 @@ function CategoryModal() {
         e.preventDefault();
 
 
-        const storageRef = ref(storage, `images/${CategoryImage.name}`);
+
+        const storageRef = ref(storage, `images/category/${CategoryImage.name}`);
 
         uploadBytes(storageRef, CategoryImage).then((snapshot) => {
             getDownloadURL(snapshot.ref)
                 .then((url) => {
-                    const payload = {
-                        CategoryName,
-                        CategoryImage: url
-                    }
-                    console.log(payload)
 
-
+                    const payload = { CategoryName, CategoryImage: url }
+                    axios.post(`${AppRoute}api/create-category`, payload)
+                        .then((json) => {
+                            setShow(false);
+                            recallData(json.data.Categories);
+                        }).catch(err => console.log(err.message))
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => alert(error.message));
         });
-
     }
 
     return (
         <>
-            <Button variant="danger" onClick={handleShow}>
+            <Button style={{ backgroundColor: "rgb(16, 135, 103)" }} onClick={handleShow}>
                 Add Category
             </Button>
 
@@ -85,3 +87,5 @@ function CategoryModal() {
 }
 
 export default CategoryModal;
+
+

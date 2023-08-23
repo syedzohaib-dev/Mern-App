@@ -1,17 +1,19 @@
 import React from 'react'
-// import "Home.css"
+import "./Home.css"
+import Footer from '../Components/Footer'
 
 export default function Home() {
-  return (
-    <div className="container-fluid p-0 m-0">
-    <div
+    return (
+      <>
+        <div className="container-fluid p-0 m-0">
+        <div
         className="px-lg-5 tns-item tns-slide-cloned tns-slide-active tns-fadeIn"
         style={{ backgroundColor: "rgb(42, 222, 174)", left: "0%" }}
       >
         <div className="d-lg-flex justify-content-between align-items-center ps-lg-4">
           <img
             className="d-block order-lg-2 me-lg-n5 flex-shrink-0"
-            src="https://www.airwick.co.uk/products/automatic-sprays/help/_jcr_content/root/upperContentArea/teaser.coreimg.png/1603975975148/automatic-sprays-main-image.png"
+            src="https://images.ctfassets.net/ajjw8wywicb3/2kjA7yvX0SOSOaNAnQZDlV/d8b73d34c0c467912414a3d78e129256/Tide_HP_Product_by_type_Dec09.png"
             alt="Summer Collection"
           />
           <div
@@ -39,6 +41,7 @@ export default function Home() {
         </div>
       </div>
       </div>
-  )
-  
+      <Footer/>
+      </>
+    )
 }

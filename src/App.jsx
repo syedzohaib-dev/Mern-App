@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Admin from './Admin'
 import User from './User'
 import Guest from './Guest'
+import { GlobalContext } from './Context/context'
+import { decodeToken } from 'react-jwt'
+
+export const AppRoute = '/'
 
 const ComponentByRoles = {
   'admin': Admin,
@@ -11,13 +15,20 @@ const ComponentByRoles = {
 
 const getUserRole = (params) => ComponentByRoles[params] || ComponentByRoles['guest']
 
-function App() {
+export default function App() {
+  const { state, dispatch } = useContext(GlobalContext)
 
-  const [role, setRole] = useState('admin')
+  const decodeUser = (token) => {
+    if (!token) {
+      return undefined
+    }
+    else {
+      const res = decodeToken(token)
+      return res?.role
+    }
+  }
 
-  const CurrentUser = getUserRole(role)
-
+  const currentToken = decodeUser(state.token)
+  const CurrentUser = getUserRole(currentToken)
   return <CurrentUser />
 }
-
-export default App

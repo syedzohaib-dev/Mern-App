@@ -1,7 +1,8 @@
 import React from 'react'
-import Sidebar from './Components/Sidebar'
+import Sidebar from './components/Sidebar'
 import Home from './Pages/Home'
 import Category from './pages/Category'
+import Products from './pages/Products'
 import { Route, Routes, } from "react-router-dom";
 
 
@@ -15,6 +16,7 @@ export default function Admin() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
+          <Route path="/products" element={<Products />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </div>
@@ -22,3 +24,5 @@ export default function Admin() {
 
   )
 }
+
+
